@@ -144,7 +144,8 @@ function isActiveForm($formName, $activeForm) {
       <button class="<?= isActiveForm('register', $activeForm) ?>" onclick="switchForm('register')">Register</button>
     </div>
 
-    <form id="login" class="<?= isActiveForm('login', $activeForm) ?>" method="post">
+    <form id="login" class="<?= isActiveForm('login', $activeForm) ?>" action="login_register.php" method="post">
+
       <h2>Sign In</h2>
       <?= showError($errors['login']); ?>
       <label for="login-email">Email</label>
@@ -164,8 +165,8 @@ function isActiveForm($formName, $activeForm) {
       <button type="submit" name="login">Sign in</button>
     </form>
 
-    <form id="register" class="<?= isActiveForm('register', $activeForm) ?>" method="post">
-      <h2>Register Account</h2>
+    <form id="register" class="<?= isActiveForm('register', $activeForm) ?>" action="login_register.php" method="post">
+
       <?= showError($errors['register']); ?>
       <label for="name">Name</label>
       <input type="text" id="name" name="name" placeholder="Your name" required />
