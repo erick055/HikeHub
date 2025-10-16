@@ -62,7 +62,7 @@ if (isset($_POST['login'])) {
         if (password_verify($password, $user['password'])) {
             $_SESSION['name'] = $user['name'];
             $_SESSION['email'] = $user['email'];
-            header("Location: dashboard.php"); // Redirect to your dashboard
+            header("Location: explore.php"); // Redirect to explore
             exit();
         }
     }
