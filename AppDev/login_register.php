@@ -1,75 +1,41 @@
 <?php
+
 session_start();
 require_once 'config.php';
 
-// Handle Registration
-if (isset($_POST['register'])) {
-    $name = trim($_POST['name']);
-    $email = trim($_POST['email']);
-    $password = $_POST['password'];
-    $confirmPassword = $_POST['new-password'];
+if(isset($_POST['register'])){
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    // Check if passwords match
-    if ($password !== $confirmPassword) {
-        $_SESSION['register_error'] = 'Passwords do not match!';
-        $_SESSION['active_form'] = 'register';
-        header("Location: login.php");
-        exit();
-    }
+$checkEmail = $conn->query("SELECT email FROM users WHERE email = '$email'");
+if($checkEmail->num_rows>0){
+    $_SESSION['register_error'] = 'Email is already registered!';
+    $_SESSION['active_form'] = 'register';
 
-    // Check if email already exists
-    $stmt = $conn->prepare("SELECT email FROM users WHERE email = ?");
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $stmt->store_result();
-
-    if ($stmt->num_rows > 0) {
-        $_SESSION['register_error'] = 'Email is already registered!';
-        $_SESSION['active_form'] = 'register';
-        header("Location: login.php");
-        exit();
-    }
-
-    // Insert new user
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-    $insert = $conn->prepare("INSERT INTO users (name, email, password) VALUES (?, ?, ?)");
-    $insert->bind_param("sss", $name, $email, $hashedPassword);
-
-    if ($insert->execute()) {
-        $_SESSION['active_form'] = 'login';
-        header("Location: login.php");
-        exit();
-    } else {
-        $_SESSION['register_error'] = 'Registration failed. Please try again.';
-        $_SESSION['active_form'] = 'register';
-        header("Location: login.php");
-        exit();
-    }
+}else{
+    $conn->query("INSERT INTO users (name,email,password) VALUES ('$name','$email','$password')");
+}
+header("Location: login.html");
+exit();
 }
 
-// Handle Login
-if (isset($_POST['login'])) {
-    $email = trim($_POST['email']);
-    $password = $_POST['password'];
+if (isset($_POST['login'])){
+    $email = $_POST['email'];
+    $password =$_POST['password'];
 
-    $stmt = $conn->prepare("SELECT name, email, password FROM users WHERE email = ?");
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $result = $conn->query("SELECT * FROM users WHERE email = '$email' ");
+    if(password_verify($password, $user['password'])){
+        $_SESSION['name'] = $user['name'];
+        $_SESSION['email'] = $user['email'];
 
-    if ($result->num_rows === 1) {
-        $user = $result->fetch_assoc();
-        if (password_verify($password, $user['password'])) {
-            $_SESSION['name'] = $user['name'];
-            $_SESSION['email'] = $user['email'];
-            header("Location: dashboard.php"); // Redirect to your dashboard
-            exit();
-        }
+        
     }
-
-    $_SESSION['login_error'] = 'Incorrect email or password';
-    $_SESSION['active_form'] = 'login';
-    header("Location: login.php");
     exit();
 }
+$_SESSION['login_error'] = 'Incorrect email or password';
+$_SESSION['active_form'] = 'login';
+header("Location: index.php");
+exit();
+
 ?>
