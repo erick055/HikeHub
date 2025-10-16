@@ -28,7 +28,7 @@
     <div class="hero-text">
       <h2>Discover Your Next <span class="highlight"><br>Adventure</span></h2>
       <p>Find the perfect hiking trail and connect with expert guides to explore nature safely and confidently.</p>
-      <button>Start Exploring</button>
+      <button id="myButton">Start Exploring</button>
     </div>
   </section>
 
@@ -210,3 +210,9 @@
 
 
   </style>
+  <script>
+
+    document.getElementById("myButton").onclick = function () {         
+      location.href = "explore.html";
+    }
+  </script>
