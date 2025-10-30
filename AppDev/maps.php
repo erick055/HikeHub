@@ -47,9 +47,9 @@ $username = $_SESSION['name'] ?? "Guest";
         </a>
 
         <div class="profile">
-      <p class="name-profile"><?php echo htmlspecialchars($username); ?></p>
-
-    </div>
+            <a href="profile.php" class="profile-tag"><p class="name-profile"><?php echo htmlspecialchars($username); ?></p></a>
+        </div>
+        
     <div class="prof-svg">
       <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
           <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
@@ -71,7 +71,7 @@ $username = $_SESSION['name'] ?? "Guest";
  <main>
     <div class="main-text">
 
-    <p> Interactive Maps</p>
+    <h1> Interactive Maps</h1>
     <p>Exploring hiking trails in Cavite using GPS Navigation</p>
     </div>
     <div class="DS-bar">
@@ -86,82 +86,96 @@ $username = $_SESSION['name'] ?? "Guest";
             <option value="intermediate">Intermediate</option>
         </select>
     </div>
-   <div class="map-card">
-        <div class="cards">
-                        <div class="trail-card" data-difficulty="moderate">
-            <div class="difficulty-tag moderate">Moderate</div>
-              <h3>Mt. Pico de loro</h3>
-             <div class="details">
-              <p class="detail-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16"><path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/></svg>
-                Ternate, Cavite
-              </p>
-              <p class="detail-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/></svg>
-                664m elevation
-              </p>
-              <p class="detail-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16"><path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.582a32 32 0 0 1-2.206-2.578c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.877 3 6a5 5 0 0 1 10 0c0 .877-.304 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"/><path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/></svg>
-             8.5km distance
-              </p>
-            </div>
-            <p class="status open">OPEN</p>
-            <div class="card-footer">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/></svg>
-            </div>
-          </div>
-          
-            <div class="trail-card" data-difficulty="easy">
-            <div class="difficulty-tag easy">Easy</div>
-            <h3>Mt. Palay-Palay</h3>
-            <div class="details">
-              <p class="detail-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16"><path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/></svg>
-                2-3 Hours
-              </p>
-              <p class="detail-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/></svg>
-                620m elevation
-              </p>
-              <p class="detail-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16"><path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.582a32 32 0 0 1-2.206-2.578c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.877 3 6a5 5 0 0 1 10 0c0 .877-.304 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"/><path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/></svg>
-                4.2km distance
-              </p>
-            </div>
-            <p class="status open">OPEN</p>
-            <div class="card-footer">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/></svg>
-            </div>
-          </div>
-          
-            <div class="trail-card" data-difficulty="moderate">
-            <div class="difficulty-tag moderate">Moderate</div>
-            <h3>Mt. Talamitam</h3>
-            <div class="details">
-              <p class="detail-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16"><path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/></svg>
-                3-4 Hours
-              </p>
-              <p class="detail-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/></svg>
-                620m elevation
-              </p>
-              <p class="detail-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16"><path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.582a32 32 0 0 1-2.206-2.578c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.877 3 6a5 5 0 0 1 10 0c0 .877-.304 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"/><path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/></svg>
-                8.5km distance
-              </p>
-            </div>
-            <p class="status open">OPEN</p>
-            <div class="card-footer">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/></svg>
-            </div>
-          </div>
-          </div>
+    <div class="section-map">
+      <div class="map-card">
+            <div class="cards">
+                            <div class="trail-card active" data-difficulty="moderate" id="card-pico">
+                <div class="difficulty-tag moderate">Moderate</div>
+                  <h3>Mt. Pico de loro</h3>
+                 <div class="details">
+                  <p class="detail-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16"><path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/></svg>
+                    Ternate, Cavite
+                  </p>
+                  <p class="detail-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/></svg>
+                    664m elevation
+                  </p>
+                  <p class="detail-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16"><path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.582a32 32 0 0 1-2.206-2.578c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.877 3 6a5 5 0 0 1 10 0c0 .877-.304 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"/><path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/></svg>
+                8.5km distance
+                  </p>
+                </div>
+                <p class="status open">OPEN</p>
+                <a href="trail_details.php?id=1" class="card-footer-link"></a>
+                <div class="card-footer">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/></svg>
+                </div>
+              </div>
+              
+                            <div class="trail-card" data-difficulty="easy" id="card-palay">
+                <div class="difficulty-tag easy">Easy</div>
+                <h3>Mt. Palay-Palay</h3>
+                <div class="details">
+                  <p class="detail-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16"><path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/></svg>
+                    2-3 Hours
+                  </p>
+                  <p class="detail-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/></svg>
+                    620m elevation
+                  </p>
+                  <p class="detail-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16"><path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.582a32 32 0 0 1-2.206-2.578c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.877 3 6a5 5 0 0 1 10 0c0 .877-.304 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"/><path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/></svg>
+                    4.2km distance
+        _         </p>
+                </div>
+                <p class="status open">OPEN</p>
+                <a href="trail_details.php?id=2" class="card-footer-link"></a>
+                <div class="card-footer">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/></svg>
+                </div>
+              </div>
+              
+                            <div class="trail-card" data-difficulty="moderate" id="card-talamitam">
+                <div class="difficulty-tag moderate">Moderate</div>
+                <h3>Mt. Talamitam</h3>
+                <div class="details">
+                  <p class="detail-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16"><path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/></svg>
+                    3-4 Hours
+                  </p>
+                  <p class="detail-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/></svg>
+                    620m elevation
+                _ </p>
+                  <p class="detail-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16"><path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.582a32 32 0 0 1-2.206-2.578c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.877 3 6a5 5 0 0 1 10 0c0 .877-.304 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"/><path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/></svg>
+                    8.5km distance
+                  </p>
+                </div>
+                <p class="status open">OPEN</p>
+                <a href="trail_details.php?id=3" class="card-footer-link"></a>
+                <div class="card-footer">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/></svg>
+                </div>
+              </div>
+              </div>
+            </div>
+
+        <div class="map" id="map-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15478.71881881518!2d120.62768313466496!3d14.214041748283626!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd0b1b11e8a4a3%3A0x614a9504c568010f!2sMt.%20Pico%20de%20Loro!5e0!3m2!1sen!2sph!4v1730302000000!5m2!1sen!2sph" 
+                width="600" 
+                height="450" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
         </div>
-
-        <div class="map"></div>
     </div>
-
+    </div>
  </main>
 
 <script>
@@ -196,6 +210,48 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Hide the card
                 card.style.display = 'none';
             }
+        });
+    });
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const mapContainer = document.getElementById('map-container');
+    const cards = document.querySelectorAll('.trail-card');
+
+    // Define the embed URLs for each map
+    const mapEmbeds = {
+        'card-pico': 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15478.71881881518!2d120.62768313466496!3d14.214041748283626!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd0b1b11e8a4a3%3A0x614a9504c568010f!2sMt.%20Pico%20de%20Loro!5e0!3m2!1sen!2sph!4v1730302000000!5m2!1sen!2sph',
+        'card-palay': 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15479.914107663246!2d120.65175213465803!3d14.192305748492043!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd0a32463b08e5%3A0x10d18e878408f653!2sMt%20Palay-Palay!5e0!3m2!1sen!2sph!4v1730302000001!5m2!1sen!2sph',
+        'card-talamitam': 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15494.380877995188!2d120.8016421345437!3d13.96215164998816!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd01ac9526c8b9%3A0xf6a7e04f056345e6!2sMt.%20Talamitam!5e0!3m2!1sen!2sph!4v1730302000002!5m2!1sen!2sph'
+    };
+
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            // Get the map URL for the clicked card
+            const mapSrc = mapEmbeds[card.id];
+            if (!mapSrc) return; // Do nothing if card has no map
+
+            // Remove 'active' class from all cards
+            cards.forEach(c => c.classList.remove('active'));
+            // Add 'active' class to the clicked card
+            card.classList.add('active');
+
+            // Create the new iframe
+            const iframeHTML = `
+                <iframe 
+                    src="${mapSrc}" 
+                    width="600" 
+                    height="450" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>`;
+            
+            // Replace the map container's content with the new iframe
+            mapContainer.innerHTML = iframeHTML;
         });
     });
 });
