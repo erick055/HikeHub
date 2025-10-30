@@ -1,11 +1,35 @@
 <?php
 session_start();
+require_once 'config.php'; // <--- 1. ADD THIS
 
-$loggedIn = isset($_SESSION['email']); 
+// 2. Check if user is logged in
+if (!isset($_SESSION['email'])) {
+    header("Location: login.php");
+    exit();
+}
 
-$exploreLink = $loggedIn ? 'explore.php' : 'aboutus.php';
-$username = $_SESSION['name'] ?? "Guest";
+$loggedIn = true; 
+$exploreLink = 'explore.php';
+$email = $_SESSION['email']; // Get email from session
 
+// 3. Fetch user data from database
+$stmt = $conn->prepare("SELECT name, bio FROM users WHERE email = ?");
+$stmt->bind_param("s", $email);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows === 1) {
+    $user = $result->fetch_assoc();
+    $username = $user['name']; // This is for the header
+    $bio = $user['bio'] ?: "No bio yet. Click 'Edit Profile' to add one!"; // Default if bio is null
+    $_SESSION['name'] = $user['name']; // Ensure session name is correct
+} else {
+    // Fallback if user not found (shouldn't happen if logged in)
+    $username = "Guest";
+    $bio = "User not found.";
+}
+$stmt->close();
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -77,9 +101,9 @@ $username = $_SESSION['name'] ?? "Guest";
       <div class="profile-info">
         <div class="profile-icon">👤</div>
         <div class="profile-text">
-          <h2 id="displayName">Harry Potter</h2>
-          <p id="displayBio">Adventure seeker from Hogwarts</p>
-          <p id="displaySince" class="since">Since January 2023</p>
+          <h2 id="displayName"><?php echo htmlspecialchars($username); ?></h2>
+          <p id="displayBio"><?php echo htmlspecialchars($bio); ?></p>
+          <p id="displaySince" class="since">Since January 2023</p> </div>
         </div>
       </div>
       <button class="edit-btn" id="editProfileBtn">✏️ Edit Profile</button>

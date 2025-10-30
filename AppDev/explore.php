@@ -153,7 +153,7 @@ if (!isset($_SESSION['email'])) {
           <p><strong>Estimated Time:</strong> 4–5 hours</p>
           <div class="card-pico"> 
             
-             <button onclick="location.href='maps.php'">View Details!</button>
+             <button onclick="location.href='trail_details.php?id=1'">View Details!</button>
           
           </div>
          
@@ -167,7 +167,7 @@ if (!isset($_SESSION['email'])) {
           <p><strong>Length:</strong> 5.5 km</p>
           <p><strong>Estimated Time:</strong> 3–4 hours</p>
             <div class="card-pico"> 
-            <button onclick="location.href='maps.php'">View Details!</button>
+            <button onclick="location.href='trail_details.php?id=2'">View Details!</button>
             </div>
         </div>
         <div class="card">
@@ -180,7 +180,7 @@ if (!isset($_SESSION['email'])) {
           <p><strong>Estimated Time:</strong> 3–4 hours</p>
              <div class="card-pico"> 
             
-            <button onclick="location.href='maps.php'">View Details!</button>
+            <button onclick="location.href='trail_details.php?id=3'">View Details!</button>
              </div>
         </div>
       </div>
