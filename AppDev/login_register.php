@@ -52,7 +52,8 @@ if (isset($_POST['login'])) {
     $email = trim($_POST['email']);
     $password = $_POST['password'];
 
-    $stmt = $conn->prepare("SELECT name, email, password FROM users WHERE email = ?");
+    // --- MODIFIED: Select 'id' and 'bio' as well ---
+    $stmt = $conn->prepare("SELECT id, name, email, password, bio FROM users WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -60,8 +61,12 @@ if (isset($_POST['login'])) {
     if ($result->num_rows === 1) {
         $user = $result->fetch_assoc();
         if (password_verify($password, $user['password'])) {
+            // --- MODIFIED: Store user_id and bio in session ---
+            $_SESSION['user_id'] = $user['id']; // <-- ESSENTIAL
             $_SESSION['name'] = $user['name'];
             $_SESSION['email'] = $user['email'];
+            $_SESSION['bio'] = $user['bio'];
+            
             header("Location: explore.php"); // Redirect to explore
             exit();
         }
