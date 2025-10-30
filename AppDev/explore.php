@@ -39,7 +39,7 @@ if (!isset($_SESSION['email'])) {
     
     <div class="logo">HikeHub</div>
     <nav>
-      <a href="#"> 
+      <a href="maps.php"> 
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-map" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.5.5 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103M10 1.91l-4-.8v12.98l4 .8zm1 12.98 4-.8V1.11l-4 .8zm-6-.8V1.11l-4 .8v12.98z"/>
         </svg> 
@@ -65,7 +65,7 @@ if (!isset($_SESSION['email'])) {
         </a>
 
         <div class="profile">
-      <p class="name-profile"><?php echo htmlspecialchars($username); ?></p>
+     <a href="profile.php" class="profile-tag"><p class="name-profile"><?php echo htmlspecialchars($username); ?></p></a>
 
     </div>
     <div class="prof-svg">
@@ -153,7 +153,7 @@ if (!isset($_SESSION['email'])) {
           <p><strong>Estimated Time:</strong> 4–5 hours</p>
           <div class="card-pico"> 
             
-            <button >View Details!</button>
+             <button onclick="location.href='maps.php'">View Details!</button>
           
           </div>
          
@@ -167,7 +167,7 @@ if (!isset($_SESSION['email'])) {
           <p><strong>Length:</strong> 5.5 km</p>
           <p><strong>Estimated Time:</strong> 3–4 hours</p>
             <div class="card-pico"> 
-            <button >View Details!</button>
+            <button onclick="location.href='maps.php'">View Details!</button>
             </div>
         </div>
         <div class="card">
@@ -180,7 +180,7 @@ if (!isset($_SESSION['email'])) {
           <p><strong>Estimated Time:</strong> 3–4 hours</p>
              <div class="card-pico"> 
             
-            <button >View Details!</button>
+            <button onclick="location.href='maps.php'">View Details!</button>
              </div>
         </div>
       </div>
@@ -410,7 +410,15 @@ padding-bottom: 10px;
 .logout-btn:hover {
   background-color: #d9363e;
 }
-
+.profile-tag{
+  text-decoration: none;
+  color: inherit;
+}
+.profile-tag .name-profile{
+  color:inherit;
+  margin:0;
+  padding:0;
+}
 
 </style>
 

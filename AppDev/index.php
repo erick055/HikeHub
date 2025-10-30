@@ -18,7 +18,7 @@ $exploreLink = isset($_SESSION['email']) ? 'explore.php' : 'login.php';
 <body>
   <!-- Header -->
   <header>
-    <a href="index.html" class="logo-link">
+    <a href="index.php" class="logo-link">
     <h1>🌄 HikeHub</h1>
     </a>
     <nav>
@@ -230,5 +230,13 @@ $exploreLink = isset($_SESSION['email']) ? 'explore.php' : 'login.php';
 .login-btn:hover {
   background-color: #d4f0e0;
 }
-
+.profile-tag{
+  text-decoration: none;
+  color: inherit;
+}
+.profile-tag .name-profile{
+  color:inherit;
+  margin:0;
+  padding:0;
+}
   </style>
