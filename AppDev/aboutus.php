@@ -25,7 +25,7 @@ $username = $_SESSION['name'] ?? "Guest";
     <h1>🌄 HikeHub</h1>
   </a>
   <nav>
-    <a href="Sos.php">
+    <a href="Sos.php" class="sos-cl">
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
         <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
       </svg>
@@ -34,7 +34,7 @@ $username = $_SESSION['name'] ?? "Guest";
     <?php if ($loggedIn): ?>
       <div class="profile-pic">
         <div class="profile">
-          <p class="name-profile"><?php echo htmlspecialchars($username); ?></p>
+          <a href="profile.php" class="profile-tag"><p class="name-profile"><?php echo htmlspecialchars($username); ?></p></a>
         </div>
         <div class="prof-svg">
           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -107,12 +107,15 @@ $username = $_SESSION['name'] ?? "Guest";
     }
      header nav a {
       color: white;
-    margin-right: 20px;
     text-decoration: none;
     font-weight: bold;
     display: flex; 
     align-items: center;
 
+    }
+    .sos-cl{
+      
+    padding-right: 20px;
     }
     .image {
         display: flex;
@@ -202,7 +205,6 @@ $username = $_SESSION['name'] ?? "Guest";
 
   display: flex;
   align-items: center;
-  padding-right: 20px;
   color: inherit;
 }
 .prof-svg {
@@ -217,4 +219,15 @@ header nav a svg.bi-telephone-fill {
 header nav{
   display: flex;
 }
+.profile-tag{
+  text-decoration: none;
+  color: inherit;
+}
+.profile-tag .name-profile{
+  color:inherit;
+  margin:0;
+  padding:0;
+}
+
+
   </style>
