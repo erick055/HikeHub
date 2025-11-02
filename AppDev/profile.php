@@ -172,9 +172,9 @@ $conn->close();
 
     <div class="quick-action">
       <h3>Quick Action</h3>
-      <button class="action-btn plan">Plan New Hike</button>
-      <button class="action-btn find">Find Hiking Buddies</button>
-      <button class="action-btn share">Share Experience</button>
+      <button class="action-btn plan" onclick="location.href='explore.php'">Plan New Hike</button>
+      <button class="action-btn find" onclick="location.href='community.php'">Find Hiking Buddies</button>
+      <button class="action-btn share" onclick="location.href='community.php'">Share Experience</button>
     </div>
   </section>
 
@@ -193,7 +193,7 @@ $conn->close();
       <p>Hiked for more than 50km total</p>
     </div>
     <div class="badge">
-      <h4>🤝 Commig Helper</h4>
+      <h4>🤝 Community Helper</h4>
       <p>Shared 5 helpful guides</p>
     </div>
   </section>
