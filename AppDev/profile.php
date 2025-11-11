@@ -12,25 +12,36 @@ $loggedIn = true;
 $exploreLink = 'explore.php';
 $email = $_SESSION['email']; // Get email from session
 
-// 3. Fetch user data from database
-$stmt = $conn->prepare("SELECT id, name, bio FROM users WHERE email = ?");
+// 3. Fetch ALL user data from database
+$stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
 $stmt->bind_param("s", $email);
 $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows === 1) {
-   $user = $result->fetch_assoc();
-$username = $user['name']; // This is for the header
-$bio = $user['bio'] ?: "No bio yet. Click 'Edit Profile' to add one!"; // Default if bio is null
+    $user = $result->fetch_assoc();
+    
+    // Set variables for display
+    $username = $user['name'];
+    $bio = $user['bio'] ?: "No bio yet. Click 'Edit Profile' to add one!";
+    $location = $user['location'] ?: "Not set";
+    $experience_level = $user['experience_level'] ?: "Not set";
+    $phone_number = $user['phone_number'] ?: "Not set";
+    $emergency_contact = $user['emergency_contact'] ?: "Not set";
+    $favorite_trail_type = $user['favorite_trail_type'] ?: "Not set";
+    $best_hiking_time = $user['best_hiking_time'] ?: "Not set";
+    $companion_preference = $user['companion_preference'] ?: "Not set";
 
-$_SESSION['user_id'] = $user['id']; // <-- ADD THIS LINE
-
-$_SESSION['name'] = $user['name']; // Ensure session name is correct
+    // Ensure session variables are up to date
+    $_SESSION['user_id'] = $user['id'];
+    $_SESSION['name'] = $user['name'];
 
 } else {
-    // Fallback if user not found (shouldn't happen if logged in)
-    $username = "Guest";
-    $bio = "User not found.";
+    // Fallback if user not found
+    session_unset();
+    session_destroy();
+    header("Location: login.php");
+    exit();
 }
 $stmt->close();
 $conn->close();
@@ -42,7 +53,7 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/profile.css">
-    <title>Document</title>
+    <title>My Profile - HikeHub</title>
 </head>
 <body>
      <header>
@@ -101,7 +112,6 @@ $conn->close();
 
   <main>
     
-  <!-- === PROFILE SECTION === -->
   <section class="profile-section">
     <div class="profile-card">
       <div class="profile-info">
@@ -170,15 +180,50 @@ $conn->close();
       <a href="#" class="view-all">View All Hikes →</a>
     </div>
 
-    <div class="quick-action">
-      <h3>Quick Action</h3>
-      <button class="action-btn plan" onclick="location.href='explore.php'">Plan New Hike</button>
-      <button class="action-btn find" onclick="location.href='community.php'">Find Hiking Buddies</button>
-      <button class="action-btn share" onclick="location.href='community.php'">Share Experience</button>
+    <div class="right-column-profile">
+        <div class="quick-action">
+          <h3>Quick Action</h3>
+          <button class="action-btn plan" onclick="location.href='explore.php'">Plan New Hike</button>
+          <button class="action-btn find" onclick="location.href='community.php'">Find Hiking Buddies</button>
+          <button class="action-btn share" onclick="location.href='community.php'">Share Experience</button>
+        </div>
+
+        <div class="profile-details-card">
+            <h3>Profile Details</h3>
+            <ul>
+                <li>
+                    <strong>Location:</strong>
+                    <span id="displayLocation"><?php echo htmlspecialchars($location); ?></span>
+                </li>
+                <li>
+                    <strong>Experience:</strong>
+                    <span id="displayExperience"><?php echo htmlspecialchars($experience_level); ?></span>
+                </li>
+                <li>
+                    <strong>Phone:</strong>
+                    <span id="displayPhone"><?php echo htmlspecialchars($phone_number); ?></span>
+                </li>
+                <li>
+                    <strong>Emergency Contact:</strong>
+                    <span id="displayEmergency"><?php echo htmlspecialchars($emergency_contact); ?></span>
+                </li>
+                <li>
+                    <strong>Favorite Trail:</strong>
+                    <span id="displayTrailType"><?php echo htmlspecialchars($favorite_trail_type); ?></span>
+                </li>
+                <li>
+                    <strong>Best Hike Time:</strong>
+                    <span id="displayHikeTime"><?php echo htmlspecialchars($best_hiking_time); ?></span>
+                </li>
+                <li>
+                    <strong>Prefers:</strong>
+                    <span id="displayCompanion"><?php echo htmlspecialchars($companion_preference); ?></span>
+                </li>
+            </ul>
+        </div>
     </div>
   </section>
 
-  <!-- === ACHIEVEMENTS SECTION === -->
   <section class="achievements">
     <div class="badge">
       <h4>🏔️ First Summit</h4>
@@ -197,14 +242,12 @@ $conn->close();
       <p>Shared 5 helpful guides</p>
     </div>
   </section>
-  <!-- === MODAL POPUP === -->
   <div id="editProfileModal" class="modal">
     <div class="modal-content">
       <span class="close-btn" id="closeModal">&times;</span>
       <h2>Edit Profile</h2>
 
       <div class="edit-container">
-        <!-- LEFT SIDE -->
         <div class="left">
           <div class="profile-pic-section">
             <div class="profile-avatar">👤</div>
@@ -212,54 +255,53 @@ $conn->close();
           </div>
 
           <label>Full Name</label>
-          <input type="text" id="nameInput" placeholder="Enter full name" />
+          <input type="text" id="nameInput" placeholder="Enter full name" value="<?php echo htmlspecialchars($username); ?>" />
 
           <label>Location</label>
-          <input type="text" id="locationInput" placeholder="Enter location" />
+          <input type="text" id="locationInput" placeholder="Enter location" value="<?php echo htmlspecialchars($location); ?>" />
 
           <label>Bio</label>
-          <textarea id="bioInput" placeholder="Write something..."></textarea>
+          <textarea id="bioInput" placeholder="Write something..."><?php echo htmlspecialchars($bio); ?></textarea>
 
           <label>Experience Level</label>
           <select id="experienceInput">
-            <option value="Beginner">Beginner</option>
-            <option value="Intermediate">Intermediate</option>
-            <option value="Expert">Expert</option>
+            <option value="Beginner" <?php if($experience_level == 'Beginner') echo 'selected'; ?>>Beginner</option>
+            <option value="Intermediate" <?php if($experience_level == 'Intermediate') echo 'selected'; ?>>Intermediate</option>
+            <option value="Expert" <?php if($experience_level == 'Expert') echo 'selected'; ?>>Expert</option>
           </select>
         </div>
 
-        <!-- RIGHT SIDE -->
         <div class="right">
           <h3>Contact Information</h3>
           <label>Email</label>
-          <input type="email" id="emailInput" />
+          <input type="email" id="emailInput" value="<?php echo htmlspecialchars($email); ?>" readonly />
 
           <label>Phone Number</label>
-          <input type="text" id="phoneInput" />
+          <input type="text" id="phoneInput" value="<?php echo htmlspecialchars($phone_number); ?>" />
 
           <label>Emergency Contact</label>
-          <input type="text" id="emergencyInput" />
+          <input type="text" id="emergencyInput" value="<?php echo htmlspecialchars($emergency_contact); ?>" />
 
           <h3>Hiking Preference</h3>
           <label>Favorite Trail Type</label>
           <select id="trailInput">
-            <option value="Mountain">Mountain</option>
-            <option value="Forest">Forest</option>
-            <option value="Waterfall">Waterfall</option>
+            <option value="Mountain" <?php if($favorite_trail_type == 'Mountain') echo 'selected'; ?>>Mountain</option>
+            <option value="Forest" <?php if($favorite_trail_type == 'Forest') echo 'selected'; ?>>Forest</option>
+            <option value="Waterfall" <?php if($favorite_trail_type == 'Waterfall') echo 'selected'; ?>>Waterfall</option>
           </select>
 
           <label>Best Hiking Time</label>
           <select id="timeInput">
-            <option value="Morning">Morning</option>
-            <option value="Afternoon">Afternoon</option>
-            <option value="Evening">Evening</option>
+            <option value="Morning" <?php if($best_hiking_time == 'Morning') echo 'selected'; ?>>Morning</option>
+            <option value="Afternoon" <?php if($best_hiking_time == 'Afternoon') echo 'selected'; ?>>Afternoon</option>
+            <option value="Evening" <?php if($best_hiking_time == 'Evening') echo 'selected'; ?>>Evening</option>
           </select>
 
           <label>Hiking Companion Preference</label>
           <select id="companionInput">
-            <option value="Solo">Solo</option>
-            <option value="Friends">Friends</option>
-            <option value="Groups">Groups</option>
+            <option value="Solo" <?php if($companion_preference == 'Solo') echo 'selected'; ?>>Solo</option>
+            <option value="Friends" <?php if($companion_preference == 'Friends') echo 'selected'; ?>>Friends</option>
+            <option value="Groups" <?php if($companion_preference == 'Groups') echo 'selected'; ?>>Groups</option>
           </select>
         </div>
       </div>

@@ -84,7 +84,7 @@ if (!isset($_SESSION['email'])) {
   </svg>
 </a>
 
-    </button>
+    
     </div>
    
   </header>
