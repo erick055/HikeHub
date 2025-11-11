@@ -61,7 +61,7 @@ $username = $_SESSION['name'] ?? "Guest";
        
       <a href="logout.php" class="logout-btn">
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
-    <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5.5 0 0 0 0 3.5v9A1.5.5 0 0 0 1.5 14h8a1.5.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
+    <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
     <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
   </svg>
 </a>
@@ -78,9 +78,11 @@ $username = $_SESSION['name'] ?? "Guest";
     </div>
     <div class="DS-bar">
       <div class="search-bar">🔍
-        <input type="text" placeholder="Search">
+        <input type="text" placeholder="Search" id="searchInput">
       </div>
-      <div class="filter-but">📂</div>
+      <div class="filter-but"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel" viewBox="0 0 16 16">
+  <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2z"/>
+</svg></div>
         <select class="difficulty-dropdown" id="difficultyFilter">
             <option value="" selected>Difficulty</option>
             <option value="easy">Easy</option>
@@ -120,7 +122,7 @@ $username = $_SESSION['name'] ?? "Guest";
                 <h3>Mt. Palay-Palay</h3>
                 <div class="details">
                   <p class="detail-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16"><path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/></svg>
+            _         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16"><path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/></svg>
                     2-3 Hours
                   </p>
                   <p class="detail-item">
@@ -130,7 +132,7 @@ $username = $_SESSION['name'] ?? "Guest";
                   <p class="detail-item">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16"><path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.582a32 32 0 0 1-2.206-2.578c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.877 3 6a5 5 0 0 1 10 0c0 .877-.304 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"/><path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/></svg>
                     4.2km distance
-        _         </p>
+                  </p>
                 </div>
                 <p class="status open">OPEN</p>
                 <a href="trail_details.php?id=2" class="card-footer-link"></a>
@@ -152,7 +154,7 @@ $username = $_SESSION['name'] ?? "Guest";
                     620m elevation
                 _ </p>
                   <p class="detail-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16"><path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.582a32 32 0 0 1-2.206-2.578c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.877 3 6a5 5 0 0 1 10 0c0 .877-.304 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"/><path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/></svg>
+              _       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16"><path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.582a32 32 0 0 1-2.206-2.578c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.877 3 6a5 5 0 0 1 10 0c0 .877-.304 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"/><path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/></svg>
                     8.5km distance
                   </p>
                 </div>
@@ -254,6 +256,29 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Replace the map container's content with the new iframe
             mapContainer.innerHTML = iframeHTML;
+        });
+    });
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('searchInput');
+    const allTrailCards = document.querySelectorAll('.trail-card');
+
+    searchInput.addEventListener('input', (event) => {
+        const searchTerm = event.target.value.toLowerCase().trim();
+
+        allTrailCards.forEach(card => {
+            const cardId = card.id.toLowerCase();
+            const cardTitle = card.querySelector('h3').textContent.toLowerCase();
+
+            // Check if search term is in the ID (e.g., "pico") OR the title (e.g., "mt. pico de loro")
+            if (cardId.includes(searchTerm) || cardTitle.includes(searchTerm)) {
+                card.style.display = 'block'; // Show card
+            } else {
+                card.style.display = 'none'; // Hide card
+            }
         });
     });
 });
