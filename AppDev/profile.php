@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'config.php'; // <--- 1. ADD THIS
+require_once 'config.php'; 
 
 // 2. Check if user is logged in
 if (!isset($_SESSION['email'])) {
@@ -10,7 +10,7 @@ if (!isset($_SESSION['email'])) {
 
 $loggedIn = true; 
 $exploreLink = 'explore.php';
-$email = $_SESSION['email']; // Get email from session
+$email = $_SESSION['email']; 
 
 // 3. Fetch ALL user data from database
 $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
@@ -31,10 +31,14 @@ if ($result->num_rows === 1) {
     $favorite_trail_type = $user['favorite_trail_type'] ?: "Not set";
     $best_hiking_time = $user['best_hiking_time'] ?: "Not set";
     $companion_preference = $user['companion_preference'] ?: "Not set";
+    
+    // --- MODIFIED: Get profile pic path, use default if NULL ---
+    $profile_picture_path = $user['profile_picture'] ?: 'img/default-avatar.png';
 
     // Ensure session variables are up to date
     $_SESSION['user_id'] = $user['id'];
     $_SESSION['name'] = $user['name'];
+    $_SESSION['profile_picture'] = $user['profile_picture']; 
 
 } else {
     // Fallback if user not found
@@ -88,24 +92,28 @@ $conn->close();
         </a>
 
         <div class="profile">
-     <a href="profile.php" class="profile-tag"><p class="name-profile"><?php echo htmlspecialchars($username); ?></p></a>
-
-    </div>
-    <div class="prof-svg">
-      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-          <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
-          </svg>
-      </div>
+            <a href="profile.php" class="profile-tag"><p class="name-profile"><?php echo htmlspecialchars($username); ?></p></a>
+        </div>
+        
+        <a href="profile.php" class="header-profile-pic-container">
+            <?php if ($loggedIn && isset($_SESSION['profile_picture']) && $_SESSION['profile_picture']): ?>
+                <img src="<?php echo htmlspecialchars($_SESSION['profile_picture']); ?>" alt="Profile" class="header-profile-pic" id="headerProfilePic">
+            <?php else: ?>
+                <div class="prof-svg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                    </svg>
+                </div>
+            <?php endif; ?>
+        </a>
        
-      <a href="logout.php" class="logout-btn">
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
-    <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
-    <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
-  </svg>
-</a>
-
-    </button>
+        <a href="logout.php" class="logout-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
+                <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
+            </svg>
+        </a>
     </div>
    
   </header>
@@ -115,7 +123,7 @@ $conn->close();
   <section class="profile-section">
     <div class="profile-card">
       <div class="profile-info">
-        <div class="profile-icon">👤</div>
+        <img src="<?php echo htmlspecialchars($profile_picture_path); ?>" alt="Profile" class="profile-pic-display" id="mainProfilePic">
         <div class="profile-text">
           <h2 id="displayName"><?php echo htmlspecialchars($username); ?></h2>
           <p id="displayBio"><?php echo htmlspecialchars($bio); ?></p>
@@ -242,6 +250,7 @@ $conn->close();
       <p>Shared 5 helpful guides</p>
     </div>
   </section>
+
   <div id="editProfileModal" class="modal">
     <div class="modal-content">
       <span class="close-btn" id="closeModal">&times;</span>
@@ -250,8 +259,9 @@ $conn->close();
       <div class="edit-container">
         <div class="left">
           <div class="profile-pic-section">
-            <div class="profile-avatar">👤</div>
-            <button class="upload-btn">📤 Upload New Photo</button>
+            <img src="<?php echo htmlspecialchars($profile_picture_path); ?>" alt="Profile Preview" class="profile-pic-preview" id="profilePicPreview">
+            <input type="file" id="profilePicInput" accept="image/*" style="display: none;">
+            <label for="profilePicInput" class="upload-btn">📤 Upload New Photo</label>
           </div>
 
           <label>Full Name</label>
