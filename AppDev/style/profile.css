@@ -462,3 +462,54 @@ align-items: center;
   display: block;
   margin-bottom: 2px;
 }
+/* Main display picture on profile page */
+.profile-pic-display {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #d5f5e3;
+}
+
+/* Preview picture inside the modal */
+.profile-pic-preview {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ccc;
+  margin-bottom: 10px;
+}
+
+/* Style the "Upload" button (which is a label) */
+.upload-btn {
+  background: #f0f0f0;
+  border: 1px solid #888;
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  display: inline-block; /* Make label clickable */
+  transition: background 0.2s;
+}
+.upload-btn:hover {
+  background: #e0e0e0;
+}
+
+/* --- Original .profile-icon style (keep it for other pages if needed) --- */
+.profile-icon {
+  font-size: 2rem;
+  background: #d5f5e3;
+  padding: 0.8rem;
+  border-radius: 50%;
+}
+.header-profile-pic {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-left: 10px;
+}
+.prof-svg {
+    padding-top: 5px;
+    padding-left: 10px;
+}
