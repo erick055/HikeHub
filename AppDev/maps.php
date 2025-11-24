@@ -233,8 +233,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Define the embed URLs for each map
     const mapEmbeds = {
         'card-pico': 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15478.71881881518!2d120.62768313466496!3d14.214041748283626!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd0b1b11e8a4a3%3A0x614a9504c568010f!2sMt.%20Pico%20de%20Loro!5e0!3m2!1sen!2sph!4v1730302000000!5m2!1sen!2sph',
-        'card-palay': 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15479.914107663246!2d120.65175213465803!3d14.192305748492043!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd0a32463b08e5%3A0x10d18e878408f653!2sMt%20Palay-Palay!5e0!3m2!1sen!2sph!4v1730302000001!5m2!1sen!2sph',
-        'card-talamitam': 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15494.380877995188!2d120.8016421345437!3d13.96215164998816!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd01ac9526c8b9%3A0xf6a7e04f056345e6!2sMt.%20Talamitam!5e0!3m2!1sen!2sph!4v1730302000002!5m2!1sen!2sph'
+        'card-palay': 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15470.576584018088!2d120.64275586185893!3d14.215602780339264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd8eef0ad4f2c7%3A0xd79ceb87ee377291!2sMount%20Palay%20Palay!5e0!3m2!1sen!2sph!4v1763304055441!5m2!1sen!2sph',
+        'card-talamitam': 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3869.479768867719!2d120.75514848523147!3d14.107859453699287!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd9bae83943f23%3A0x3f1089e964f9d499!2sMt.%20Talamitam!5e0!3m2!1sen!2sph!4v1763304102934!5m2!1sen!2sph'
     };
 
     cards.forEach(card => {
