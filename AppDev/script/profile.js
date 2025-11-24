@@ -15,6 +15,11 @@ const displayEmergency = document.getElementById("displayEmergency");
 const displayTrailType = document.getElementById("displayTrailType");
 const displayHikeTime = document.getElementById("displayHikeTime");
 const displayCompanion = document.getElementById("displayCompanion");
+// *** NEW: Get image display elements ***
+const mainProfilePic = document.getElementById("mainProfilePic");
+const headerProfilePic = document.getElementById("headerProfilePic"); // Assumes header pic has id 'headerProfilePic'
+const profilePicPreview = document.getElementById("profilePicPreview");
+
 
 // --- Input fields in modal ---
 const nameInput = document.getElementById("nameInput");
@@ -27,6 +32,24 @@ const emergencyInput = document.getElementById("emergencyInput");
 const trailInput = document.getElementById("trailInput");
 const timeInput = document.getElementById("timeInput");
 const companionInput = document.getElementById("companionInput");
+// *** NEW: Get file input ***
+const profilePicInput = document.getElementById("profilePicInput");
+let selectedFile = null; // Variable to hold the selected file
+
+
+// *** NEW: Add event listener for file input change (for preview) ***
+profilePicInput.onchange = (e) => {
+  if (e.target.files && e.target.files[0]) {
+    selectedFile = e.target.files[0]; // Store the file
+    
+    // Create a URL for the selected file to use as a preview
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      profilePicPreview.src = event.target.result;
+    };
+    reader.readAsDataURL(selectedFile);
+  }
+};
 
 
 // === OPEN MODAL ===
@@ -42,6 +65,11 @@ editBtn.onclick = () => {
   timeInput.value = (displayHikeTime.textContent === "Not set") ? "Morning" : displayHikeTime.textContent;
   companionInput.value = (displayCompanion.textContent === "Not set") ? "Solo" : displayCompanion.textContent;
   
+  // *** NEW: Reset file input and preview ***
+  profilePicInput.value = null; // Clear any selected file
+  selectedFile = null;
+  profilePicPreview.src = mainProfilePic.src; // Set preview to current main pic
+
   modal.style.display = "block";
 };
 
@@ -75,6 +103,11 @@ saveBtn.onclick = () => {
   formData.append('best_hiking_time', timeInput.value);
   formData.append('companion_preference', companionInput.value);
 
+  // *** NEW: Append the selected file IF one was chosen ***
+  if (selectedFile) {
+    formData.append('profile_picture', selectedFile);
+  }
+
 
   // Disable button to prevent double-clicking
   saveBtn.disabled = true;
@@ -88,29 +121,13 @@ saveBtn.onclick = () => {
   .then(response => response.json()) // Expect a JSON response
   .then(data => {
     if (data.status === 'success') {
-      // 3. Update the page text with the new data
-      displayName.textContent = data.newName;
-      displayBio.textContent = data.newBio || "No bio yet. Click 'Edit Profile' to add one!";
-      displayLocation.textContent = data.newLocation || "Not set";
-      displayExperience.textContent = data.newExperience || "Not set";
-      displayPhone.textContent = data.newPhone || "Not set";
-      displayEmergency.textContent = data.newEmergency || "Not set";
-      displayTrailType.textContent = data.newTrailType || "Not set";
-      displayHikeTime.textContent = data.newHikeTime || "Not set";
-      displayCompanion.textContent = data.newCompanion || "Not set";
-
-      // 4. Also update the header name
-      const headerProfileName = document.querySelector('.name-profile');
-      if (headerProfileName) {
-          headerProfileName.textContent = data.newName;
-      }
-
-      // 5. Close the modal
-      closeModalWindow();
-    } else {
-      // Show an error message from the server
-      alert(data.message || 'An error occurred.');
-    }
+    // The simplest and most reliable way to show all changes
+    // is to just reload the page.
+    location.reload();
+} else {
+    // Show an error message from the server
+    alert(data.message || 'An error occurred.');
+}
   })
   .catch(error => {
     console.error('Error:', error);
