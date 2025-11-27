@@ -1,98 +1,97 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
 }
 
 body {
-  background-color: #f0f9f6;
-  color: #2e4e3f;
-  line-height: 1.6;
+    background-color: #f0f9f6;
+    color: #2e4e3f;
+    line-height: 1.6;
 }
 
 header {
-  background-color: #2e8b57;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 30px;
+    background-color: #2e8b57;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
 }
 
 .logo {
-  font-size: 24px;
-  font-weight: bold;
+    font-size: 24px;
+    font-weight: bold;
 }
 
 nav {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  padding-left: 1100px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    padding-left: 1100px;
 }
 
 nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 .profile {
-  background-color: white;
-  color: #2e8b57;
-  padding: 0px 5px;
-  
-  border-radius: 5px;
-  font-weight: bold;
-  display: flex;
- align-items: center;
+    background-color: white;
+    color: #2e8b57;
+    padding: 0px 5px;
+    
+    border-radius: 5px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
 }
 
 .profile-pic{
-  display: flex;
-  align-items: center;
-  
+    display: flex;
+    align-items: center;
+    
 }
 .profile-pic .sos-button{
 
-  display: flex;
-  
-  padding-right: 20px;
-  color: inherit;
+    display: flex;
+    
+    padding-right: 20px;
+    color: inherit;
 }
 .prof-svg{
-  padding-top: 5px;
-  padding-left: 10px ;
-  
+    padding-top: 5px;
+    padding-left: 10px ;
+    
 }
 .logout-btn {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  padding: 5px 5px;
-  background-color: #ff4d4f;
-  color: white;
-  font-weight: bold;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-  margin-left: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 5px;
+    background-color: #ff4d4f;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin-left: 10px;
 }
 
 .logout-btn:hover {
-  background-color: #d9363e;
+    background-color: #d9363e;
 }
 .profile-tag{
-  text-decoration: none;
-  color: inherit;
+    text-decoration: none;
+    color: inherit;
 }
 .profile-tag .name-profile{
-  color:inherit;
-  margin:0;
-  padding:0;
+    color:inherit;
+    margin:0;
+    padding:0;
 }
-/* Main Community Container */
 .community-hub-container {
     max-width: 800px;
     margin: 20px auto;
@@ -113,7 +112,6 @@ nav a {
     margin-bottom: 20px;
 }
 
-/* Tabs */
 .hub-tabs {
     display: flex;
     border-bottom: 1px solid #ddd;
@@ -126,7 +124,7 @@ nav a {
     color: #555;
     font-weight: 600;
     border-bottom: 3px solid transparent;
-    margin-bottom: -1px; /* Aligns with bottom border */
+    margin-bottom: -1px;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -137,7 +135,6 @@ nav a {
     border-bottom-color: #2e8b57;
 }
 
-/* Share Button */
 .share-experience-btn {
     width: 100%;
     background-color: #2e8b57;
@@ -156,7 +153,6 @@ nav a {
     background-color: #256d44;
 }
 
-/* Review Feed */
 .review-feed {
     display: flex;
     flex-direction: column;
@@ -208,8 +204,11 @@ nav a {
 .review-meta {
     text-align: right;
     flex-shrink: 0;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
-
 .review-stars {
     color: #f39c12;
     font-size: 1.1rem;
@@ -256,9 +255,8 @@ nav a {
     height: 16px;
 }
 
-/* Modal Styling */
 .modal {
-    display: none; /* Hidden by default */
+    display: none;
     position: fixed;
     z-index: 1000;
     left: 0;
@@ -331,12 +329,11 @@ nav a {
     color: #f39c12;
 }
 
-/* Keep stars dim after the one hovered/clicked */
 .modal-stars:hover span.filled ~ span {
     color: #ccc; 
 }
 .modal-stars span.filled:hover ~ span {
-   color: #ccc; 
+    color: #ccc; 
 }
 
 
@@ -368,20 +365,20 @@ nav a {
     color: red;
 }
 .logo-link {
-text-decoration: none;     
-color: inherit;            
-display: flex;            
-align-items: center;
- gap: 10px;                
- }
+    text-decoration: none; 	
+    color: inherit; 	
+    display: flex; 	
+    align-items: center;
+    gap: 10px; 	
+}
 
-   .logo-link img {
-  height: 40px;             
-   }   
-    header h1{
+.logo-link img {
+    height: 40px; 	
+} 	
+header h1{
     font-size: 22px;
-   }  
-   .header-profile-pic {
+} 	
+.header-profile-pic {
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -391,4 +388,19 @@ align-items: center;
 .prof-svg {
     padding-top: 5px;
     padding-left: 10px;
+}
+.delete-review-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #ff4d4f; 
+    margin-top: 5px;
+    padding: 2px;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.delete-review-btn:hover {
+    color: #d9363e; 
 }

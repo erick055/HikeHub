@@ -1,93 +1,93 @@
-  * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
 }
 
 body {
-  background-color: #f0f9f6;
-  color: #2e4e3f;
-  line-height: 1.6;
+    background-color: #f0f9f6;
+    color: #2e4e3f;
+    line-height: 1.6;
 }
 
 header {
-  background-color: #2e8b57;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 30px;
+    background-color: #2e8b57;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
 }
 
 .logo {
-  font-size: 24px;
-  font-weight: bold;
+    font-size: 24px;
+    font-weight: bold;
 }
 
 nav {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  padding-left: 1100px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    padding-left: 1100px;
 }
 
 nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 .profile {
-  background-color: white;
-  color: #2e8b57;
-  padding: 0px 5px;
-  
-  border-radius: 5px;
-  font-weight: bold;
-  display: flex;
- align-items: center;
+    background-color: white;
+    color: #2e8b57;
+    padding: 0px 5px;
+    
+    border-radius: 5px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
 }
 
 .profile-pic{
-  display: flex;
-  align-items: center;
-  
+    display: flex;
+    align-items: center;
+    
 }
 .profile-pic .sos-button{
 
-  display: flex;
-  
-  padding-right: 20px;
-  color: inherit;
+    display: flex;
+    
+    padding-right: 20px;
+    color: inherit;
 }
 .prof-svg{
-  padding-top: 5px;
-  padding-left: 10px ;
-  
+    padding-top: 5px;
+    padding-left: 10px ;
+    
 }
 main {
-  padding: 30px;
+    padding: 30px;
 }
 
 
 
 .logout-btn {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  padding: 5px 5px;
-  background-color: #ff4d4f;
-  color: white;
-  font-weight: bold;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-  margin-left: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 5px;
+    background-color: #ff4d4f;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin-left: 10px;
 }
 
 .logout-btn:hover {
-  background-color: #d9363e;
+    background-color: #d9363e;
 }
 
 .DS-bar{
@@ -103,7 +103,7 @@ main {
     width: 60%; 
     margin-left: auto;
     margin-right: auto;
-     border:black 1px solid;
+    border:black 1px solid;
 }
 
 .search-bar {
@@ -113,7 +113,7 @@ main {
     background-color: #e9e9ea;
     border-radius: 20px;
     padding: 5px 10px; 
-   
+    
     
 }
 .search-bar input {
@@ -131,7 +131,7 @@ main {
     cursor: pointer;
 }
 .difficulty-dropdown {
-   
+    
     padding: 8px 10px;
     border: 1px solid var(--medium-gray);
     border-radius: 5px;
@@ -158,7 +158,7 @@ main {
 .difficulty-dropdown option[disabled] {
     color: var(--dark-gray);
 }
-/* --- Map Card Section Layout --- */
+
 .map-card {
     display: flex;
     gap: 20px;
@@ -173,26 +173,27 @@ main {
 }
 
 .map {
-    flex-grow: 1; /* Allows the map section to take up the rest of the space */
-   
+    flex-grow: 1; 
+    
     border-radius: 10px;
-    /* You would typically load an actual map here */
+    
     overflow: hidden; 
-    /* Give it a minimum height to be visible */
-     min-height: 500px;
+    
+    min-height: 500px;
+    padding-left: 50px;
 }
 .map iframe {
-   width: 100%;
-  height: 100%;
-  border: none;
+    width: 100%;
+    height: 100%;
+    border: none;
 }
 
 .trail-card {
     background-color: white;
-    border: 2px solid #a8baba; /* Light border color */
+    border: 2px solid #a8baba; 
     border-radius: 15px;
     padding: 20px;
-    position: relative; /* Needed for positioning the difficulty tag and arrow */
+    position: relative; 
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     display: flex;
     flex-direction: column;
@@ -201,12 +202,12 @@ main {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .trail-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
 }
 .trail-card.active {
-  border-color: #2e8b57; /* Highlight with your theme color */
-  box-shadow: 0 0 10px rgba(46, 139, 87, 0.5);
+    border-color: #2e8b57; 
+    box-shadow: 0 0 10px rgba(46, 139, 87, 0.5);
 }
 .trail-card h3 {
     font-size: 1.2em;
@@ -278,53 +279,52 @@ main {
 }
 @keyframes flash-animation {
     0% {
-        box-shadow: 0 0 0px rgba(0, 0, 0, 0); /* Normal state */
+        box-shadow: 0 0 0px rgba(0, 0, 0, 0);
         transform: scale(1);
     }
     50% {
-        box-shadow: 0 0 15px 5px rgba(255, 255, 0, 0.8); /* Highlight state (Yellow glow) */
-        transform: scale(1.02); /* Slight scale up for emphasis */
+        box-shadow: 0 0 15px 5px rgba(255, 255, 0, 0.8);
+        transform: scale(1.02);
     }
     100% {
-        box-shadow: 0 0 0px rgba(0, 0, 0, 0); /* Back to normal */
+        box-shadow: 0 0 0px rgba(0, 0, 0, 0);
         transform: scale(1);
     }
 }
 
-/* Class to apply the flash animation */
 .trail-card.flash {
-    animation: flash-animation 0.5s ease-out; /* 0.5 seconds duration */
+    animation: flash-animation 0.5s ease-out;
 }
 
 .profile-tag{
-  text-decoration: none;
-  color: inherit;
+    text-decoration: none;
+    color: inherit;
 }
 
 .profile-tag .name-profile{
-  color:inherit;
-  margin:0;
-  padding:0;
+    color:inherit;
+    margin:0;
+    padding:0;
 }
 .section-map{
-display:flex;
-padding-top: 50px;
+    display:flex;
+    padding-top: 50px;
 }
 .logo-link {
-text-decoration: none;     
-color: inherit;            
-display: flex;            
-align-items: center;
- gap: 10px;                
- }
+    text-decoration: none; 	
+    color: inherit; 	
+    display: flex; 	
+    align-items: center;
+    gap: 10px; 	
+}
 
-   .logo-link img {
-  height: 40px;             
-   }   
-   header h1{
+.logo-link img {
+    height: 40px; 	
+} 	
+header h1{
     font-size: 22px;
-   }  
-   .header-profile-pic {
+} 	
+.header-profile-pic {
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -334,4 +334,17 @@ align-items: center;
 .prof-svg {
     padding-top: 5px;
     padding-left: 10px;
+}
+
+.arrow-link {
+    color: inherit; 	
+    text-decoration: none; 	
+    display: flex; 	
+    padding: 5px; 	
+    border-radius: 50%; 	
+    transition: background-color 0.2s, color 0.2s;
+}
+.arrow-link:hover {
+    background-color: rgba(46, 139, 87, 0.1); 
+    color: #2e8b57; 	
 }
