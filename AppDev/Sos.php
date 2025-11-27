@@ -2,7 +2,6 @@
 session_start();
 $loggedIn = isset($_SESSION['email']); 
 $username = $_SESSION['name'] ?? "Guest";
-// --- ADDED: Get pic path, use default if not logged in or no pic ---
 $profile_picture_path = $_SESSION['profile_picture'] ?? 'img/default-avatar.png';
 
 $exploreLink = isset($_SESSION['email']) ? 'explore.php' : 'aboutus.php';

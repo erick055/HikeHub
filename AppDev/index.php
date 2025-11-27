@@ -3,7 +3,6 @@ session_start();
 
 $loggedIn = isset($_SESSION['email']); 
 $username = $_SESSION['name'] ?? "Guest";
-// --- ADDED: Get pic path, use default if not logged in or no pic ---
 $profile_picture_path = $_SESSION['profile_picture'] ?? 'img/default-avatar.png';
 
 $exploreLink = isset($_SESSION['email']) ? 'explore.php' : 'aboutus.php';
@@ -326,7 +325,7 @@ $exploreLink = isset($_SESSION['email']) ? 'explore.php' : 'aboutus.php';
   padding-right: 20px;
 }
 
-/* Header container for flex alignment */
+
 .header-container {
   display: flex;
   justify-content: space-between;
@@ -334,11 +333,10 @@ $exploreLink = isset($_SESSION['email']) ? 'explore.php' : 'aboutus.php';
   width: 100%;
 }
 
-/* Logged-out nav */
 .nav-logged-out {
   display: flex;
   align-items: center;
-  gap: 20px; /* space between phone icon and login */
+  gap: 20px; 
 }
 
 .login-btn {

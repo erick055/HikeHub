@@ -15,7 +15,6 @@ if ($conn->connect_error) {
 // Get username from session directly
 $loggedIn = isset($_SESSION['email']); 
 $username = $_SESSION['name'] ?? "Guest";
-// --- ADDED: Get pic path, use default if not logged in or no pic ---
 $profile_picture_path = $_SESSION['profile_picture'] ?? 'img/default-avatar.png';
 
 $conn->close();

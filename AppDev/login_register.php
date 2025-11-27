@@ -52,7 +52,7 @@ if (isset($_POST['login'])) {
     $email = trim($_POST['email']);
     $password = $_POST['password'];
 
-    // --- MODIFIED: Select 'profile_picture' as well ---
+   
     $stmt = $conn->prepare("SELECT id, name, email, password, bio, profile_picture FROM users WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
@@ -61,7 +61,7 @@ if (isset($_POST['login'])) {
     if ($result->num_rows === 1) {
         $user = $result->fetch_assoc();
         if (password_verify($password, $user['password'])) {
-            // --- MODIFIED: Store all user data in session ---
+            //  Store all user data in session 
             $_SESSION['user_id'] = $user['id']; 
             $_SESSION['name'] = $user['name'];
             $_SESSION['email'] = $user['email'];

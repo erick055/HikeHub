@@ -17,10 +17,10 @@ $user_id = $_SESSION['user_id'];
 $new_image_path = null;
 $old_image_path = null;
 
-// --- 2. HANDLE FILE UPLOAD ---
+// 2. HANDLE FILE UPLOAD 
 if (isset($_FILES['profile_picture'])) {
     
-    // --- MODIFIED: Check for upload errors first ---
+    //  Check for upload errors first 
     if ($_FILES['profile_picture']['error'] == UPLOAD_ERR_INI_SIZE || $_FILES['profile_picture']['error'] == UPLOAD_ERR_FORM_SIZE) {
         echo json_encode(['status' => 'error', 'message' => 'Error: The uploaded file is too large.']);
         exit();
@@ -29,13 +29,13 @@ if (isset($_FILES['profile_picture'])) {
     // Only proceed if upload was successful (OK)
     if ($_FILES['profile_picture']['error'] == UPLOAD_ERR_OK) { 
     
-        $target_dir = "uploads/profiles/"; // The folder we made in Step 0
+        $target_dir = "uploads/profiles/"; 
         
-        // --- ADDED: Create directory if it doesn't exist (from add_review.php) ---
+       
         if (!is_dir($target_dir)) {
             mkdir($target_dir, 0777, true);
         }
-        // --- END OF ADDED BLOCK ---
+       
 
         $file_ext = strtolower(pathinfo($_FILES['profile_picture']['name'], PATHINFO_EXTENSION));
         $new_image_path = $target_dir . "user_" . $user_id . "_" . uniqid() . '.' . $file_ext;
@@ -60,8 +60,9 @@ if (isset($_FILES['profile_picture'])) {
                 echo json_encode(['status' => 'error', 'message' => 'Failed to move uploaded image. Check folder permissions.']);
                 exit();
             }
+            chmod($new_image_path, 0644);
             
-            // --- Delete old picture if it exists and is not the default ---
+            // Delete old picture if it exists and is not the default 
             if ($old_image_path && file_exists($old_image_path)) {
                 unlink($old_image_path);
             }
@@ -75,10 +76,10 @@ if (isset($_FILES['profile_picture'])) {
         echo json_encode(['status' => 'error', 'message' => 'An unknown error occurred during upload. Error code: ' . $_FILES['profile_picture']['error']]);
         exit();
     }
-    // If error is UPLOAD_ERR_NO_FILE, we just do nothing and the script continues
+  
 }
 
-// --- 3. GET TEXT DATA ---
+
 $newName = trim($_POST['name'] ?? '');
 $newBio = trim($_POST['bio'] ?? '');
 $newLocation = trim($_POST['location'] ?? '');
@@ -94,7 +95,7 @@ if (empty($newName)) {
     exit();
 }
 
-// --- 4. PREPARE DATABASE UPDATE ---
+
 if ($new_image_path) {
     // If a new image was uploaded, update its path
     $stmt = $conn->prepare("UPDATE users SET 
@@ -121,16 +122,16 @@ if ($new_image_path) {
     );
 }
 
-// --- 5. EXECUTE AND RESPOND ---
+
 if ($stmt->execute()) {
-    // IMPORTANT: Update session variables
+   
     $_SESSION['name'] = $newName;
     if ($new_image_path) {
         $_SESSION['profile_picture'] = $new_image_path;
     }
     
     // Fetch the *current* profile picture path to send back
-    $final_pic_path = $_SESSION['profile_picture'] ?? 'img/default-avatar.png'; // Use default if still null
+    $final_pic_path = $_SESSION['profile_picture'] ?? 'img/default-avatar.png'; 
 
     echo json_encode([
         'status' => 'success',
@@ -143,7 +144,7 @@ if ($stmt->execute()) {
         'newTrailType' => $newTrailType,
         'newHikeTime' => $newHikeTime,
         'newCompanion' => $newCompanion,
-        'newProfilePicPath' => $final_pic_path // <-- SEND NEW PATH
+        'newProfilePicPath' => $final_pic_path 
     ]);
 } else {
     echo json_encode(['status' => 'error', 'message' => 'Database update failed.']);

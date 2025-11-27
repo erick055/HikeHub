@@ -1,21 +1,20 @@
 <?php
 session_start();
-require_once 'config.php'; // Include your database connection
+require_once 'config.php'; 
 
-// --- 1. GET USER INFO (for header) ---
+//  1. GET USER INFO (for header) 
 $loggedIn = isset($_SESSION['email']); 
 $username = $_SESSION['name'] ?? "Guest";
-// --- ADDED: Get pic path, use default if not logged in or no pic ---
 $profile_picture_path = $_SESSION['profile_picture'] ?? 'img/default-avatar.png';
 
-// --- 2. GET TRAIL ID FROM URL ---
+//2. GET TRAIL ID FROM URL 
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     // If no ID is provided, stop
     die("Error: Invalid Trail ID.");
 }
 $trail_id = (int)$_GET['id']; // Cast to integer for security
 
-// --- 3. FETCH TRAIL DATA FROM DATABASE ---
+// 3. FETCH TRAIL DATA FROM DATABASE 
 $stmt = $conn->prepare("SELECT * FROM trails WHERE id = ?");
 $stmt->bind_param("i", $trail_id);
 $stmt->execute();
@@ -108,8 +107,10 @@ $conn->close();
         <div class="left-column">
             
             <div class="card trail-info-card">
+                <h2 id="trail-title" data-trail-name="<?php echo htmlspecialchars($trail['name']); ?>">
+                    <?php echo htmlspecialchars($trail['name']); ?>
+                </h2>
                 <img src="<?php echo htmlspecialchars($trail['image_path']); ?>" alt="<?php echo htmlspecialchars($trail['name']); ?>">
-                <h2><?php echo htmlspecialchars($trail['name']); ?></h2>
                 <p><?php echo htmlspecialchars($trail['location']); ?></p>
                 <div class="stats">
                     <span>🕒 <?php echo htmlspecialchars($trail['time_hours']); ?></span>
@@ -132,6 +133,8 @@ $conn->close();
                             <option value="06:00">6:00 AM</option>
                             <option value="07:00">7:00 AM</option>
                             <option value="08:00">8:00 AM</option>
+                            <option value="09:00">9:00 AM</option>
+                            <option value="13:00">1:00 PM</option>
                         </select>
                     </div>
                 </div>
@@ -147,33 +150,43 @@ $conn->close();
                 <p class="group-size-label">Maximum of 10 people</p>
             </div>
 
-            <button class="book-now-btn">Book Now</button>
+            <button class="book-now-btn">Contact Organization</button>
 
         </div>
 
         <div class="right-column" id="organization-panel">
             <div class="card">
                 <h3>Contact Organization</h3>
-                <p class="sub-text">Choose an organization to coordinate your hiking adventure outside the platform.</p>
+                <p class="sub-text">We've pre-filled a message with your selected date, time, and group size. Choose a partner to send it to:</p>
                 
                 <div class="org-card">
                     <h4>Juan Faith Adventure</h4>
                     <p>Professional hiking organizers with 10 years experience</p>
-                    <span>Contact: 0910 802 5667</span>
-                    <a href="#">https://www.fb.com/JuanFaithAdventure</a>
+                    
+                    <a id="link-juan-fb" href="https://m.me/JuanFaithAdventure" target="_blank" class="dynamic-link">
+                        💬 Message on Facebook
+                    </a>
+                    <br>
+                   
                 </div>
 
                 <div class="org-card">
                     <h4>Hiking Buddies PH</h4>
                     <p>Community-based hiking group with certified guides</p>
-                    <span>Contact: 275861286</span>
-                    <a href="www.fb.com/hikingbuddiesph/">https://www.fb.com/hikingbuddiesph/</a>
+                    
+                    <a id="link-buddies-fb" href="https://m.me/hikingbuddiesph" target="_blank" class="dynamic-link">
+                        💬 Message on Facebook
+                    </a>
+                    <p style="font-size: 0.8rem; color: #888;">(Phone: 275861286)</p>
                 </div>
 
                 <div class="org-card">
                     <h4>Peak Explorers</h4>
                     <p>Eco-friendly hiking tours and outdoor adventures</p>
-                    <a href="#">info@peakexplorers.ph</a>
+                    
+                    <a id="link-peak-email" href="#" class="dynamic-link">
+                        📧 Email Inquiry
+                    </a>
                 </div>
 
             </div>
@@ -183,40 +196,102 @@ $conn->close();
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- Group Size Stepper ---
+            
+            const dateInput = document.getElementById('date');
+            const timeInput = document.getElementById('time');
             const sizeDisplay = document.getElementById('group-size');
             const btnMinus = document.getElementById('btn-minus');
             const btnPlus = document.getElementById('btn-plus');
+            
+           
+            const linkJuanSMS = document.getElementById('link-juan-sms');
+            const linkPeakEmail = document.getElementById('link-peak-email');
+            
+            
+            const trailName = document.getElementById('trail-title').getAttribute('data-trail-name');
             let currentSize = 1;
 
+         
+            function updateLinks() {
+                const dateVal = dateInput.value;
+                const timeVal = timeInput.value || "TBD";
+                const sizeVal = sizeDisplay.textContent;
+
+                const messageBody = `Hi, I would like to inquire about booking a hike for ${trailName}.\n\nDetails:\nDate: ${dateVal}\nTime: ${timeVal}\nGroup Size: ${sizeVal} pax\n\nPlease let me know if this slot is available. Thank you!`;
+
+             
+
+                // --- Update Email Link (Peak Explorers) ---
+                // Format: mailto:<email>?subject=<subject>&body=<message>
+                const emailSubject = encodeURIComponent(`Booking Inquiry: ${trailName}`);
+                const emailBody = encodeURIComponent(messageBody);
+                if(linkPeakEmail) {
+                    linkPeakEmail.href = `mailto:info@peakexplorers.ph?subject=${emailSubject}&body=${emailBody}`;
+                }
+
+                
+            }
+
+            
+            dateInput.addEventListener('change', updateLinks);
+            timeInput.addEventListener('change', updateLinks);
+
+            
             btnMinus.addEventListener('click', () => {
                 if (currentSize > 1) {
                     currentSize--;
                     sizeDisplay.textContent = currentSize;
+                    updateLinks(); 
                 }
             });
 
             btnPlus.addEventListener('click', () => {
-                if (currentSize < 10) { // Max 10 people
+                if (currentSize < 10) { 
                     currentSize++;
                     sizeDisplay.textContent = currentSize;
+                    updateLinks();
                 }
             });
 
-            // --- *** NEW CODE: Show Organization Panel on "Book Now" click *** ---
+          
             const bookButton = document.querySelector('.book-now-btn');
             const orgPanel = document.getElementById('organization-panel');
 
             if (bookButton && orgPanel) {
                 bookButton.addEventListener('click', () => {
-                    // Set display to 'block' to make it visible
-                    // (The CSS 'flex: 1' will still apply from the parent container)
+                   
+                    updateLinks();
+                    
+                    // Show panel
                     orgPanel.style.display = 'block'; 
+                    
+                    // Smooth scroll to the panel
+                    orgPanel.scrollIntoView({ behavior: 'smooth' });
                 });
             }
-            // --- *** END OF NEW CODE *** ---
+
+           
+            updateLinks();
         });
     </script>
+    
+    <style>
+        .dynamic-link {
+            display: inline-block;
+            margin-top: 5px;
+            color: #2e8b57;
+            text-decoration: none;
+            font-weight: 600;
+            border: 1px solid #2e8b57;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background 0.2s, color 0.2s;
+        }
+        .dynamic-link:hover {
+            background-color: #2e8b57;
+            color: white;
+        }
+    </style>
 
 </body>
 </html>

@@ -32,7 +32,7 @@ if ($result->num_rows === 1) {
     $best_hiking_time = $user['best_hiking_time'] ?: "Not set";
     $companion_preference = $user['companion_preference'] ?: "Not set";
     
-    // --- MODIFIED: Get profile pic path, use default if NULL ---
+   
     $profile_picture_path = $user['profile_picture'] ?: 'img/default-avatar.png';
 
     // Ensure session variables are up to date
