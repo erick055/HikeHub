@@ -4,12 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const openBtn = document.getElementById('openReviewModalBtn');
     const closeBtn = document.getElementById('closeReviewModalBtn');
 
-    // --- Modal Open/Close ---
     if (openBtn) {
         openBtn.onclick = function() {
-            // Check if user is logged in (you'll need to pass this from PHP)
-            // For now, we assume if the button is there, they can click it.
-            // A better check would be in add_review.php (which we did)
             modal.classList.add('show');
         }
     }
@@ -28,7 +24,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // --- Modal Star Rating ---
     const modalStars = document.querySelectorAll('.modal-stars span');
     const ratingInput = document.getElementById('ratingInput');
     
@@ -43,16 +38,15 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateStarDisplay(rating) {
         modalStars.forEach(star => {
             if (star.dataset.value <= rating) {
-                star.innerHTML = '★'; // Filled star
+                star.innerHTML = '★';
                 star.classList.add('filled');
             } else {
-                star.innerHTML = '☆'; // Empty star
+                star.innerHTML = '☆';
                 star.classList.remove('filled');
             }
         });
     }
 
-    // --- AJAX Form Submission ---
     const reviewForm = document.getElementById('addReviewForm');
     const formMessage = document.getElementById('reviewFormMessage');
     const submitBtn = document.getElementById('submitReviewBtn');
@@ -76,7 +70,6 @@ document.addEventListener('DOMContentLoaded', function() {
             if (data.status === 'success') {
                 formMessage.textContent = data.message;
                 formMessage.classList.add('success');
-                // Reload the page to show new review
                 setTimeout(() => {
                     location.reload(); 
                 }, 1500);
@@ -104,3 +97,34 @@ document.addEventListener('DOMContentLoaded', function() {
         formMessage.className = 'form-message';
     }
 });
+
+function deleteReview(reviewId) {
+    if (confirm("Are you sure you want to delete this review? This action cannot be undone.")) {
+        
+        const formData = new FormData();
+        formData.append('review_id', reviewId);
+
+        fetch('delete_review.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                const reviewCard = document.getElementById('review-' + reviewId);
+                if (reviewCard) {
+                    reviewCard.style.opacity = '0';
+                    setTimeout(() => reviewCard.remove(), 500);
+                } else {
+                    location.reload();
+                }
+            } else {
+                alert('Error: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('A connection error occurred.');
+        });
+    }
+}
